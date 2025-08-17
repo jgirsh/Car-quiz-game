@@ -42,6 +42,7 @@ let currentIndex = 0;
 let score = 0;
 let timer;
 let timeLeft = 15;
+
 const timerEl = document.getElementById("timer");
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
@@ -81,8 +82,10 @@ function renderQuestion() {
   optionsEl.innerHTML = "";
   const q = questions[currentIndex];
 
-  // show image(s)
+  // Show question text
   questionEl.innerHTML = q.question + "<br>";
+
+  // Show image(s)
   q.images.forEach(img => {
     const imageEl = document.createElement("img");
     imageEl.src = img;
@@ -92,7 +95,7 @@ function renderQuestion() {
     questionEl.appendChild(imageEl);
   });
 
-  // shuffle options
+  // Shuffle and display options
   const shuffledOptions = shuffle([...q.options]);
   shuffledOptions.forEach(opt => {
     const btn = document.createElement("div");
@@ -102,3 +105,54 @@ function renderQuestion() {
     btn.addEventListener("click", () => selectAnswer(opt, btn));
     btn.addEventListener("keypress", (e) => {
       if (e.key === "Enter" || e.key === " ") {
+        selectAnswer(opt, btn);
+      }
+    });
+    optionsEl.appendChild(btn);
+  });
+
+  startTimer();
+}
+
+function selectAnswer(selected, btn) {
+  stopTimer();
+  const correct = questions[currentIndex].answer;
+
+  if (selected === correct) {
+    score++;
+    btn.style.backgroundColor = "green";
+  } else {
+    btn.style.backgroundColor = "red";
+    // highlight correct answer
+    [...optionsEl.children].forEach(b => {
+      if (b.textContent === correct) b.style.backgroundColor = "green";
+    });
+  }
+
+  // Move to next question automatically after 1 second
+  setTimeout(goNext, 1000);
+}
+
+function goNext() {
+  currentIndex++;
+  if (currentIndex < questions.length) {
+    renderQuestion();
+  } else {
+    showScore();
+  }
+}
+
+function showScore() {
+  questionEl.innerHTML = `Game over! Your score: ${score}/${questions.length}`;
+  optionsEl.innerHTML = "";
+
+  const name = prompt("Enter your name for the leaderboard:", "Player");
+  if (name) {
+    saveScore(name, score);
+  }
+  displayLeaderboard();
+}
+
+// -------------------- LEADERBOARD --------------------
+function saveScore(name, score) {
+  const leaderboa
