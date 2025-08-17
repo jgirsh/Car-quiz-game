@@ -9,22 +9,64 @@ let timer;
 
 const questions = [
   {
-    question: "What car is this?",
-    img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Ferrari-Logo.png",
+    question: "What car logo is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Ferrari-Logo.png/600px-Ferrari-Logo.png",
     options: ["Lamborghini", "Ferrari", "Porsche", "McLaren"],
     answer: "Ferrari"
   },
   {
-    question: "What car is this?",
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Toyota_logo.png",
+    question: "What car logo is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_logo.png/600px-Toyota_logo.png",
     options: ["Honda", "Toyota", "Nissan", "Mazda"],
     answer: "Toyota"
   },
   {
-    question: "What car is this?",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/BMW_logo_%28gray%29.svg",
+    question: "Which car is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/2018_Ferrari_488_GTB_3.9_Front.jpg/600px-2018_Ferrari_488_GTB_3.9_Front.jpg",
+    options: ["Ferrari 488", "Lamborghini Huracan", "Porsche 911", "McLaren 720S"],
+    answer: "Ferrari 488"
+  },
+  {
+    question: "What car logo is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW_logo_%28gray%29.svg/600px-BMW_logo_%28gray%29.svg.png",
     options: ["Audi", "BMW", "Mercedes", "Volkswagen"],
     answer: "BMW"
+  },
+  {
+    question: "Which car is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/2017_Ford_Mustang_GT_5.0_Front.jpg/600px-2017_Ford_Mustang_GT_5.0_Front.jpg",
+    options: ["Ford Mustang", "Chevrolet Camaro", "Dodge Challenger", "Tesla Model S"],
+    answer: "Ford Mustang"
+  },
+  {
+    question: "Which car is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/2020_Porsche_911_Carrera_4S_IMG_0798.jpg/600px-2020_Porsche_911_Carrera_4S_IMG_0798.jpg",
+    options: ["Porsche 911", "Audi R8", "Nissan GT-R", "Chevrolet Corvette"],
+    answer: "Porsche 911"
+  },
+  {
+    question: "What car logo is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Mercedes-Benz_Logo_2010.svg/600px-Mercedes-Benz_Logo_2010.svg.png",
+    options: ["Mercedes", "BMW", "Audi", "Volkswagen"],
+    answer: "Mercedes"
+  },
+  {
+    question: "Which car is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Lamborghini_Huracan_LP610-4_IMG_2216.jpg/600px-Lamborghini_Huracan_LP610-4_IMG_2216.jpg",
+    options: ["Ferrari 488", "Lamborghini Huracan", "McLaren 720S", "Porsche 911"],
+    answer: "Lamborghini Huracan"
+  },
+  {
+    question: "Which car is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Tesla_Model_3_Performance_%282019-07-29%29_front.jpg/600px-Tesla_Model_3_Performance_%282019-07-29%29_front.jpg",
+    options: ["Tesla Model 3", "BMW i8", "Audi e-tron", "Nissan Leaf"],
+    answer: "Tesla Model 3"
+  },
+  {
+    question: "What car logo is this?",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Audi_logo_2016.svg/600px-Audi_logo_2016.svg.png",
+    options: ["Audi", "BMW", "Mercedes", "Volkswagen"],
+    answer: "Audi"
   }
 ];
 
@@ -44,7 +86,7 @@ function showQuestion() {
   }
 
   const q = questions[currentQuestion];
-  questionEl.innerHTML = `<p>${q.question}</p><img src="${q.img}" alt="Car Logo" width="150">`;
+  questionEl.innerHTML = `<p>${q.question}</p><img src="${q.img}" alt="Car Image">`;
   optionsEl.innerHTML = '';
 
   // Shuffle options so answer is not always first
@@ -75,7 +117,6 @@ function selectAnswer(selected, correct) {
     });
   }
 
-  // Move to next question after 1 second
   setTimeout(() => {
     currentQuestion++;
     showQuestion();
@@ -83,7 +124,7 @@ function selectAnswer(selected, correct) {
 }
 
 function startTimer() {
-  let time = 10; // 10 seconds per question
+  let time = 10;
   timerEl.innerText = `Time: ${time}`;
   timer = setInterval(() => {
     time--;
