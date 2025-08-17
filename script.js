@@ -86,7 +86,7 @@ function showQuestion() {
   }
 
   const q = questions[currentQuestion];
-  questionEl.innerHTML = `<p>${q.question}</p><img src="${q.img}" alt="Car Image">`;
+  questionEl.innerHTML = `<p>${q.question}</p><img src="${q.img}" alt="Car Image" style="max-width: 100%; height: auto;">`;
   optionsEl.innerHTML = '';
 
   // Shuffle options so answer is not always first
