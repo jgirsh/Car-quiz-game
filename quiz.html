@@ -3,24 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Car Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    .option { cursor: pointer; padding: 10px; margin: 5px; border: 1px solid #333; border-radius: 5px; }
+    .option:hover { background-color: #eee; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Car Quiz</h1>
-    <div id="quiz-container">
-      <p id="question"></p>
-      <img id="question-image" style="max-width:200px; display:none;" />
-      <div id="options"></div>
-      <button id="next-btn" class="btn">Next</button>
-    </div>
-    <div id="result" style="display:none;">
-      <h2>Your Score: <span id="score"></span></h2>
-      <a class="btn" href="index.html">Play Again</a>
-    </div>
-  </div>
-  
-  <!-- ✅ Make sure script.js is loaded at the end -->
-  <script src="script.js"></script>
+
+<h1>Car Quiz</h1>
+
+<button id="start-btn">Start Game</button>
+
+<div id="timer"></div>
+<div id="question"></div>
+<div id="options"></div>
+<div id="leaderboard"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
